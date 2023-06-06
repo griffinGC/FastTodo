@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class TodoService {
 
 
-    // 생성자를 이용한 주입방식 사용
+    // requiredArgsConstructor를 이용해서 final 키워드를 가진 변수에 대해서 DI 수행
     private final TodoRepository todoRepository;
 
     // todo 추가
@@ -23,5 +23,10 @@ public class TodoService {
     }
 
     // todo 불러오기
+    @Transactional
+    public Todo getTodo(Long id){
+        Todo todo = todoRepository.findOne(id);
+        return todo;
+    }
 
 }
